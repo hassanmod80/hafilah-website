@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1e3a8a;
+  --color-primary-light: #2563eb;
+  --color-primary-dark: #1e3a8a;
+  --color-secondary: #10b981;
+  --color-secondary-light: #34d399;
+  --color-secondary-dark: #059669;
+  --color-accent: #d97706;
+  --color-accent-light: #f59e0b;
+  --color-accent-dark: #b45309;
+  --color-dark: #1f2937;
+  --color-light: #f9fafb;
+
+  --font-arabic: 'Cairo', 'Tajawal', sans-serif;
+  --font-english: 'Inter', 'Poppins', sans-serif;
+}
+
+@layer base {
+  :root {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    background-color: #f9fafb;
+    color: #1f2937;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .text-ltr {
+    direction: ltr;
+    unicode-bidi: embed;
+  }
+
+  .text-rtl {
+    direction: rtl;
+  }
+
+  .font-arabic {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.25s ease-out forwards;
+  }
+
+  .animate-slideIn {
+    animation: slideIn 0.3s ease-out forwards;
+  }
+}
+
+/* Custom Swiper style overrides */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #1e3a8a !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #1e3a8a !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
