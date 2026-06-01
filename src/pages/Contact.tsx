@@ -18,18 +18,46 @@ interface ContactFormData {
 export const Contact: React.FC = () => {
   const { language, t } = useLanguage();
   const seo = SEO_CONFIGS.contact[language];
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const isAr = language === "ar";
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
+    formState: { errors },
   } = useForm<ContactFormData>();
 
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const [captchaNum1, setCaptchaNum1] = useState(0);
+  const [captchaNum2, setCaptchaNum2] = useState(0);
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+
+  const generateCaptcha = () => {
+    setCaptchaNum1(Math.floor(Math.random() * 9) + 1);
+    setCaptchaNum2(Math.floor(Math.random() * 9) + 1);
+    setCaptchaAnswer("");
+    setCaptchaError(null);
+  };
+
+  React.useEffect(() => {
+    generateCaptcha();
+  }, []);
+
   const onSubmit = async (data: ContactFormData) => {
+    const sum = captchaNum1 + captchaNum2;
+    if (parseInt(captchaAnswer) !== sum) {
+      setCaptchaError(
+        isAr
+          ? "إجابة التحقق غير صحيحة، يرجى المحاولة مرة أخرى."
+          : "Incorrect CAPTCHA answer, please try again."
+      );
+      return;
+    }
+    setCaptchaError(null);
     setLoading(true);
     setError(null);
     setSuccess(false);
@@ -45,6 +73,7 @@ export const Contact: React.FC = () => {
       setSuccess(true);
       setLoading(false);
       reset();
+      generateCaptcha();
     } catch (err: any) {
       console.error("Contact message submission error:", err);
       setError(err.message || t("form.error"));
@@ -55,7 +84,6 @@ export const Contact: React.FC = () => {
   const handleCall = () => trackCallClick("Contact Page");
   const handleWhatsApp = () => trackWhatsAppClick("Contact Page");
 
-  const isAr = language === "ar";
   const location = isAr ? LOCATION_AR : LOCATION_EN;
   const opHours = isAr ? OP_HOURS_AR : OP_HOURS_EN;
 
@@ -65,6 +93,12 @@ export const Contact: React.FC = () => {
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
         <meta name="keywords" content={seo.keywords} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://hafilah.com/contact" />
+        <meta property="og:image" content="https://hafilah.com/images/hero/bus-hero.webp" />
+        <link rel="canonical" href="https://hafilah.com/contact" />
       </Helmet>
 
       {/* Hero Banner */}
@@ -163,20 +197,6 @@ export const Contact: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Map embed */}
-              <div className="h-64 rounded-2xl overflow-hidden shadow-md border border-gray-200">
-                <iframe 
-                  title={t("home.mapTitle")}
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m11!1m3!1d115911.68761066708!2d46.7248315!3d24.7135517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2ssa!4v1700000000000!5m2!1sar!2ssa" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen={true} 
-                  loading="lazy"
-                ></iframe>
-              </div>
-
             </div>
 
             {/* Contact Form (Right) */}
@@ -264,6 +284,31 @@ export const Contact: React.FC = () => {
                       }`}
                     />
                     {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
+                  </div>
+
+                  {/* Security Captcha (Spam Prevention) */}
+                  <div className="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                    <label className="block text-gray-700 text-xs sm:text-sm font-semibold mb-2">
+                      {isAr ? "التحقق الأمني (منع السبام)" : "Security Captcha (Spam Prevention)"}
+                    </label>
+                    <div className="flex items-center gap-3">
+                      <span className="bg-primary text-white font-bold py-2.5 px-4 rounded-xl text-sm select-none">
+                        {captchaNum1} + {captchaNum2} =
+                      </span>
+                      <input
+                        type="number"
+                        value={captchaAnswer}
+                        onChange={(e) => setCaptchaAnswer(e.target.value)}
+                        placeholder={isAr ? "الإجابة؟" : "Answer?"}
+                        className={`flex-grow py-2.5 px-3 bg-white border border-gray-200 rounded-xl outline-none text-sm text-center ${
+                          isAr ? "text-right" : "text-left"
+                        }`}
+                        required
+                      />
+                    </div>
+                    {captchaError && (
+                      <p className="text-red-500 text-xs mt-1.5">{captchaError}</p>
+                    )}
                   </div>
 
                   {/* Submit Button */}

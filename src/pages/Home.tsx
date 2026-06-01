@@ -49,6 +49,12 @@ export const Home: React.FC = () => {
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
         <meta name="keywords" content={seo.keywords} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://hafilah.com/" />
+        <meta property="og:image" content="https://hafilah.com/images/hero/bus-hero.webp" />
+        <link rel="canonical" href="https://hafilah.com/" />
         <script type="application/ld+json">
           {JSON.stringify(businessSchema)}
         </script>
@@ -393,70 +399,49 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Contact Info & Map Section */}
+      {/* Contact Info Section */}
       <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Contact Details cards */}
-            <div className="lg:col-span-5 text-start">
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">
-                {t("home.contactTitle")}
-              </h2>
-              <p className="text-gray-500 text-sm leading-relaxed mb-8">
-                {t("home.contactDesc")}
-              </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              {t("home.contactTitle")}
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              {t("home.contactDesc")}
+            </p>
+          </div>
 
-              <div className="space-y-6">
-                {/* Location */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 text-primary rounded-xl flex items-center justify-center flex-shrink-0">
-                    <FaMapMarkerAlt className="text-xl" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-950 text-base">{t("home.contactLocation")}</h4>
-                    <p className="text-gray-500 text-sm mt-1">{location}</p>
-                  </div>
-                </div>
-
-                {/* Call */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-red-100 text-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <FaPhoneAlt className="text-xl" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-950 text-base">{t("home.contactPhone")}</h4>
-                    <p className="text-gray-500 text-sm mt-1 text-ltr">{PHONE_NUMBER}</p>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <FaEnvelope className="text-xl" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-950 text-base">{t("home.contactEmail")}</h4>
-                    <p className="text-gray-500 text-sm mt-1">{EMAIL}</p>
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto text-start">
+            {/* Location */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition">
+              <div className="w-14 h-14 bg-blue-50 text-primary rounded-2xl flex items-center justify-center mb-6">
+                <FaMapMarkerAlt className="text-2xl" />
               </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">{t("home.contactLocation")}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{location}</p>
             </div>
 
-            {/* Google Map stub */}
-            <div className="lg:col-span-7 h-96 w-full rounded-2xl overflow-hidden shadow-lg border border-gray-200">
-              <iframe 
-                title={t("home.mapTitle")}
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m11!1m3!1d115911.68761066708!2d46.7248315!3d24.7135517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2ssa!4v1700000000000!5m2!1sar!2ssa" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+            {/* Phone */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition">
+              <div className="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6">
+                <FaPhoneAlt className="text-2xl" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">{t("home.contactPhone")}</h3>
+              <a href={`tel:${PHONE_NUMBER.replace(/\s+/g, "")}`} className="text-gray-500 text-sm hover:text-primary transition-colors text-ltr block font-bold">
+                {PHONE_NUMBER}
+              </a>
             </div>
 
+            {/* Email */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition">
+              <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                <FaEnvelope className="text-2xl" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">{t("home.contactEmail")}</h3>
+              <a href={`mailto:${EMAIL}`} className="text-gray-500 text-sm hover:text-primary transition-colors block font-semibold">
+                {EMAIL}
+              </a>
+            </div>
           </div>
         </div>
       </section>

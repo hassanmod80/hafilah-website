@@ -103,6 +103,11 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
+                <Link to="/services/tourist-rental" className="hover:text-primary transition-colors font-semibold">
+                  {t("nav.tourist")}
+                </Link>
+              </li>
+              <li>
                 <Link to="/services/coaster" className="hover:text-primary transition-colors">
                   {t("nav.coaster")}
                 </Link>
@@ -113,8 +118,13 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/services/employee-transport" className="hover:text-primary transition-colors">
+                <Link to="/services/employee-transport" className="hover:text-primary transition-colors font-semibold">
                   {t("nav.employee")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/worker-transport" className="hover:text-primary transition-colors font-semibold">
+                  {t("nav.worker")}
                 </Link>
               </li>
               <li>
@@ -130,6 +140,11 @@ export const Footer: React.FC = () => {
               <li>
                 <Link to="/services/vip-bus" className="hover:text-primary transition-colors font-semibold">
                   {t("nav.vip")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/mercedes-vip" className="hover:text-primary transition-colors font-semibold">
+                  {t("nav.mercedes")}
                 </Link>
               </li>
             </ul>
@@ -181,8 +196,19 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between text-slate-500 text-xs">
+        <div className="border-t border-slate-800 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between text-slate-500 text-xs gap-4">
           <p>{t("footer.copyright", { year: new Date().getFullYear() })}</p>
+          
+          <div className="flex gap-4">
+            <Link to="/terms" className="hover:text-primary transition-colors">
+              {language === "ar" ? "الشروط والأحكام" : "Terms & Conditions"}
+            </Link>
+            <span>|</span>
+            <Link to="/privacy" className="hover:text-primary transition-colors">
+              {language === "ar" ? "سياسة الخصوصية" : "Privacy Policy"}
+            </Link>
+          </div>
+
           <p className="mt-2 sm:mt-0">
             {language === "ar" ? "بني بكل حب لخدمة ضيوف الرياض." : "Built with love to serve Riyadh's guests."}
           </p>

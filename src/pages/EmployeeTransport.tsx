@@ -23,6 +23,12 @@ export const EmployeeTransport: React.FC = () => {
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
         <meta name="keywords" content={seo.keywords} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://hafilah.com/services/employee-transport" />
+        <meta property="og:image" content="https://hafilah.com/images/services/employees-new.webp" />
+        <link rel="canonical" href="https://hafilah.com/services/employee-transport" />
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
         </script>

@@ -7,32 +7,50 @@ import { FaCalendarAlt, FaUser, FaPhoneAlt, FaBus, FaPaperPlane } from "react-ic
 import { useLanguage } from "../utils/LanguageContext";
 
 export const BookingForm: React.FC = () => {
-  const { submitBooking, loading, success, error } = useBooking();
   const { language, t } = useLanguage();
-  
+  const { submitBooking, loading, success, error } = useBooking();
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
-  } = useForm<BookingData>({
-    defaultValues: {
-      name: "",
-      phone: "",
-      date: new Date().toISOString().split("T")[0],
-      busType: "",
-      notes: ""
-    }
-  });
+    formState: { errors },
+  } = useForm<BookingData>();
+
+  const isAr = language === "ar";
+
+  const [captchaNum1, setCaptchaNum1] = React.useState(0);
+  const [captchaNum2, setCaptchaNum2] = React.useState(0);
+  const [captchaAnswer, setCaptchaAnswer] = React.useState("");
+  const [captchaError, setCaptchaError] = React.useState<string | null>(null);
+
+  const generateCaptcha = () => {
+    setCaptchaNum1(Math.floor(Math.random() * 9) + 1);
+    setCaptchaNum2(Math.floor(Math.random() * 9) + 1);
+    setCaptchaAnswer("");
+    setCaptchaError(null);
+  };
+
+  React.useEffect(() => {
+    generateCaptcha();
+  }, []);
 
   const onSubmit = async (data: BookingData) => {
+    const sum = captchaNum1 + captchaNum2;
+    if (parseInt(captchaAnswer) !== sum) {
+      setCaptchaError(
+        isAr
+          ? "إجابة التحقق غير صحيحة، يرجى المحاولة مرة أخرى."
+          : "Incorrect CAPTCHA answer, please try again."
+      );
+      return;
+    }
+    setCaptchaError(null);
     const result = await submitBooking(data);
     if (result.success) {
       reset();
+      generateCaptcha();
     }
   };
-
-  const isAr = language === "ar";
 
   return (
     <div className="w-full max-w-xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-8">
@@ -175,6 +193,31 @@ export const BookingForm: React.FC = () => {
               isAr ? "text-right" : "text-left"
             }`}
           />
+        </div>
+
+        {/* Security Captcha (Spam Prevention) */}
+        <div className="bg-slate-50 p-4 rounded-xl border border-gray-200">
+          <label className="block text-gray-700 text-xs sm:text-sm font-semibold mb-2">
+            {isAr ? "التحقق الأمني (منع السبام)" : "Security Captcha (Spam Prevention)"}
+          </label>
+          <div className="flex items-center gap-3">
+            <span className="bg-primary text-white font-bold py-2.5 px-4 rounded-xl text-sm select-none">
+              {captchaNum1} + {captchaNum2} =
+            </span>
+            <input
+              type="number"
+              value={captchaAnswer}
+              onChange={(e) => setCaptchaAnswer(e.target.value)}
+              placeholder={isAr ? "الإجابة؟" : "Answer?"}
+              className={`flex-grow py-2.5 px-3 bg-white border border-gray-200 rounded-xl outline-none text-sm text-center ${
+                isAr ? "text-right" : "text-left"
+              }`}
+              required
+            />
+          </div>
+          {captchaError && (
+            <p className={`text-red-500 text-xs mt-1.5 ${isAr ? "text-right" : "text-left"}`}>{captchaError}</p>
+          )}
         </div>
 
         {/* Submit Button */}

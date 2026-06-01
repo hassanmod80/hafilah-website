@@ -142,8 +142,18 @@ export const SERVICES: Service[] = [
     icon: "FaStar",
     descAr: "خدمات نقل فاخرة وحصرية لرجال الأعمال والشخصيات الهامة عبر أحدث فانات مرسيدس V-Class وسبرينتر المجهزة بالكامل.",
     descEn: "Exclusive luxury transport services for business executives and VIPs via the latest fully-equipped Mercedes V-Class and Sprinter vans.",
-    link: "/services/vip-bus",
+    link: "/services/mercedes-vip",
     image: "/images/buses/mercedes-vclass.webp"
+  },
+  {
+    id: 7,
+    nameAr: "نقل العمال والمقاولات",
+    nameEn: "Worker & Labor Transport",
+    icon: "FaBus",
+    descAr: "حلول نقل موثوقة واقتصادية للعمال والفنيين للمشاريع الإنشائية والمصانع في الرياض بعقود مرنة.",
+    descEn: "Reliable and cost-effective worker and labor transport solutions for construction sites and factories in Riyadh with flexible contracts.",
+    link: "/services/worker-transport",
+    image: "/images/services/employees.webp"
   }
 ];
 

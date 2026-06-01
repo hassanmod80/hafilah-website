@@ -16,6 +16,12 @@ export const About: React.FC = () => {
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
         <meta name="keywords" content={seo.keywords} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://hafilah.com/about" />
+        <meta property="og:image" content="https://hafilah.com/images/hero/bus-hero.webp" />
+        <link rel="canonical" href="https://hafilah.com/about" />
       </Helmet>
 
       {/* Hero Banner */}

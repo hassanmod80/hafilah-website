@@ -116,7 +116,19 @@ export const SEO_CONFIGS: Record<string, { ar: SEOData; en: SEOData }> = {
       keywords: "hafilah contact number, book bus riyadh, whatsapp bus rental, email hafilah"
     }
   },
-  vipBus: {
+  vip: {
+    ar: {
+      title: "تأجير باصات VIP كنب وطاولات بالرياض | حافلة Hafilah",
+      description: "احجز باصات وحافلات VIP الفاخرة المجهزة بكنب وطاولات اجتماعات وخدمات رفاهية ممتازة لخدمة كبار الشخصيات ورجال الأعمال بالرياض.",
+      keywords: "باصات vip الرياض, باصات كنب وطاولات للايجار, حافلات كبار الشخصيات"
+    },
+    en: {
+      title: "VIP Sofa & Table Bus Rental Riyadh | Hafilah Bus Rental",
+      description: "Rent luxurious 30-passenger VIP buses configured with spacious sofas, executive meeting tables, and premium refreshments in Riyadh.",
+      keywords: "vip bus rental riyadh, sofa and table bus, luxury coach hire, business travel ksa"
+    }
+  },
+  mercedesVip: {
     ar: {
       title: "تأجير مرسيدس VIP ورجال الأعمال بالرياض | حافلة Hafilah",
       description: "خدمات نقل فاخرة وحصرية لرجال الأعمال والشخصيات الهامة عبر أحدث فانات مرسيدس V-Class وسبرينتر المجهزة بالكامل مع سائق محترف بالرياض.",
@@ -126,6 +138,30 @@ export const SEO_CONFIGS: Record<string, { ar: SEOData; en: SEOData }> = {
       title: "Mercedes VIP & Executive Rental Riyadh | Hafilah Bus Rental",
       description: "Exclusive luxury transport services for business executives and VIPs via the latest fully-equipped Mercedes V-Class and Sprinter vans with driver in Riyadh.",
       keywords: "mercedes sprinter hire riyadh, rent mercedes v-class riyadh, vip van rental saudi arabia, executive transport"
+    }
+  },
+  tourist: {
+    ar: {
+      title: "تأجير باصات سياحية بالرياض | حافلة Hafilah",
+      description: "احصل على أفضل خدمات تأجير الحافلات والباصات السياحية الحديثة والمكيفة مع سائقين ذوي خبرة لجولات الرياض التاريخية والرحلات السياحية.",
+      keywords: "تأجير باص سياحي الرياض, ايجار حافلة سياحية, باصات رحلات الرياض"
+    },
+    en: {
+      title: "Tourist Bus & Coach Rental Riyadh | Hafilah Bus Rental",
+      description: "Modern air-conditioned tour buses with professional guides and drivers for city sightseeing and historic travels across Riyadh.",
+      keywords: "tourist bus rental riyadh, rent sightseeing coach, historic tours bus hire ksa"
+    }
+  },
+  worker: {
+    ar: {
+      title: "تأجير باصات نقل عمال ومقاولات بالرياض | حافلة Hafilah",
+      description: "خدمات نقل عمالة ومقاولات يومية وشهرية موثوقة واقتصادية للشركات والمصانع والمواقع الإنشائية في الرياض بأسعار منافسة.",
+      keywords: "باصات نقل عمال الرياض, عقود نقل عمالة, ايجار باصات المقاولات"
+    },
+    en: {
+      title: "Worker & Labor Transport Riyadh | Hafilah Bus Rental",
+      description: "Reliable and highly cost-effective group transportation for workers and technical crews to construction sites and factories in Riyadh.",
+      keywords: "worker transport riyadh, labor commuting contracts, crew shuttle rental ksa"
     }
   }
 };

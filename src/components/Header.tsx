@@ -68,46 +68,67 @@ export const Header: React.FC = () => {
                   } mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50 animate-fadeIn`}
                 >
                   <Link
+                    to="/services/tourist-rental"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition font-semibold"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    {t("nav.tourist")}
+                  </Link>
+                  <Link
                     to="/services/coaster"
-                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
                     onClick={() => setIsDropdownOpen(false)}
                   >
                     {t("nav.coaster")}
                   </Link>
                   <Link
                     to="/services/bus-50-seater"
-                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
                     onClick={() => setIsDropdownOpen(false)}
                   >
                     {t("nav.bus50")}
                   </Link>
                   <Link
                     to="/services/employee-transport"
-                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition font-semibold"
                     onClick={() => setIsDropdownOpen(false)}
                   >
                     {t("nav.employee")}
                   </Link>
                   <Link
+                    to="/services/worker-transport"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    {t("nav.worker")}
+                  </Link>
+                  <Link
                     to="/services/event-buses"
-                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
                     onClick={() => setIsDropdownOpen(false)}
                   >
                     {t("nav.events")}
                   </Link>
                   <Link
                     to="/services/airport-transfer"
-                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition"
                     onClick={() => setIsDropdownOpen(false)}
                   >
                     {t("nav.airport")}
                   </Link>
                   <Link
                     to="/services/vip-bus"
-                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition font-semibold"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition font-semibold"
                     onClick={() => setIsDropdownOpen(false)}
                   >
                     {t("nav.vip")}
+                  </Link>
+                  <Link
+                    to="/services/mercedes-vip"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition font-semibold"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    {t("nav.mercedes")}
                   </Link>
                 </div>
               )}
@@ -193,6 +214,13 @@ export const Header: React.FC = () => {
             <div className={`border-r-2 ${language === "ar" ? "border-gray-100 pr-3" : "border-gray-100 pl-3 border-l-2 border-r-0"} py-1 flex flex-col space-y-2.5`}>
               <span className="text-xs font-bold text-gray-400">{t("nav.services")}:</span>
               <Link
+                to="/services/tourist-rental"
+                className="text-gray-600 text-sm hover:text-primary font-semibold"
+                onClick={() => setIsOpen(false)}
+              >
+                {t("nav.tourist")}
+              </Link>
+              <Link
                 to="/services/coaster"
                 className="text-gray-600 text-sm hover:text-primary"
                 onClick={() => setIsOpen(false)}
@@ -208,10 +236,17 @@ export const Header: React.FC = () => {
               </Link>
               <Link
                 to="/services/employee-transport"
-                className="text-gray-600 text-sm hover:text-primary"
+                className="text-gray-600 text-sm hover:text-primary font-semibold"
                 onClick={() => setIsOpen(false)}
               >
                 {t("nav.employee")}
+              </Link>
+              <Link
+                to="/services/worker-transport"
+                className="text-gray-600 text-sm hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                {t("nav.worker")}
               </Link>
               <Link
                 to="/services/event-buses"
@@ -233,6 +268,13 @@ export const Header: React.FC = () => {
                 onClick={() => setIsOpen(false)}
               >
                 {t("nav.vip")}
+              </Link>
+              <Link
+                to="/services/mercedes-vip"
+                className="text-gray-600 text-sm hover:text-primary font-semibold"
+                onClick={() => setIsOpen(false)}
+              >
+                {t("nav.mercedes")}
               </Link>
             </div>
 
