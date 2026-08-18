@@ -1,6 +1,6 @@
 export const COMPANY_NAME = "حافلة Hafilah";
-export const PHONE_NUMBER = "053 676 6958";
-export const WHATSAPP_NUMBER = "966536766958";
+export const PHONE_NUMBER = "0536758510";
+export const WHATSAPP_NUMBER = "966536758510";
 export const EMAIL = "info@hafilah.com";
 
 export const LOCATION_AR = "الرياض، المملكة العربية السعودية";
